@@ -3,7 +3,7 @@ import time
 import sys
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from botillo_token import TOKEN
+from credentials import TOKEN
 from restricted_wrap import restricted
 
 logging.basicConfig(
