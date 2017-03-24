@@ -6,7 +6,7 @@ Telegram contact: http://t.me/PortilloBot
 1. Create root file `credentials.py` with this line:
 
     ```python
-    TOKEN = "replace with bot token"
+    TOKEN = 'replace with bot token'
     ```
 2. Run command in terminal:
 
