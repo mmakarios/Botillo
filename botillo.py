@@ -41,16 +41,16 @@ def error(bot, update, error):
 def main():
     # Connect to Telegram API
     updater = Updater(token=TOKEN)
-    dispatcher = updater.dispatcher
+    dp = updater.dispatcher
 
     # Add message handlers
-    dispatcher.add_handler(CommandHandler('start', start))
-    dispatcher.add_handler(CommandHandler('r', restart))
-    dispatcher.add_handler(MessageHandler(Filters.text, echo))
-    dispatcher.add_handler(CommandHandler('caps', caps, pass_args=True))
+    dp.add_handler(CommandHandler('start', start))
+    dp.add_handler(CommandHandler('r', restart))
+    dp.add_handler(MessageHandler(Filters.text, echo))
+    dp.add_handler(CommandHandler('caps', caps, pass_args=True))
 
     # Log errors
-    dispatcher.add_error_handler(error)
+    dp.add_error_handler(error)
 
     # Start the bot
     updater.start_polling()
