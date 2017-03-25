@@ -24,11 +24,6 @@ def restart(bot, update):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-def echo(bot, update):
-    update.message.chat.send_action('typing')
-    bot.sendMessage(chat_id=update.message.chat_id, text=update.message.text)
-
-
 def caps(bot, update, args):
     text_caps = ' '.join(args).upper()
     update.message.reply_text(text_caps)
@@ -46,7 +41,6 @@ def main():
     # Add message handlers
     dp.add_handler(CommandHandler('start', start))
     dp.add_handler(CommandHandler('r', restart))
-    dp.add_handler(MessageHandler(Filters.text, echo))
     dp.add_handler(CommandHandler('caps', caps, pass_args=True))
 
     # Log errors
