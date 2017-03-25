@@ -5,6 +5,7 @@ import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from credentials import TOKEN
 from restricted_wrap import restricted
+from filter_question import filter_question
 
 # Python logging configurations
 logging.basicConfig(
@@ -29,6 +30,11 @@ def caps(bot, update, args):
     update.message.reply_text(text_caps)
 
 
+def question(bot, update):
+    update.message.chat.send_action('typing')
+    update.message.reply_text("perae")
+
+
 def error(bot, update, error):
     logger.warn('Update "%s" caused error "%s"' % (update, error))
 
@@ -42,6 +48,7 @@ def main():
     dp.add_handler(CommandHandler('start', start))
     dp.add_handler(CommandHandler('r', restart))
     dp.add_handler(CommandHandler('caps', caps, pass_args=True))
+    dp.add_handler(MessageHandler(filter_question, question))
 
     # Log errors
     dp.add_error_handler(error)
