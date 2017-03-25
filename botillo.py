@@ -6,6 +6,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from credentials import TOKEN
 from restricted_wrap import restricted
 
+# Python logging configurations
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO)
@@ -38,21 +39,26 @@ def error(bot, update, error):
 
 
 def main():
+    # Connect to Telegram API
     updater = Updater(token=TOKEN)
     dispatcher = updater.dispatcher
 
+    # Add message handlers
     dispatcher.add_handler(CommandHandler('start', start))
-
     dispatcher.add_handler(CommandHandler('r', restart))
-
     dispatcher.add_handler(MessageHandler(Filters.text, echo))
-
     dispatcher.add_handler(CommandHandler('caps', caps, pass_args=True))
 
+    # Log errors
     dispatcher.add_error_handler(error)
 
+    # Start the bot
     updater.start_polling()
+    logger.info("Starting...")
 
+    # Block until the you presses Ctrl-C or the process receives SIGINT,
+    # SIGTERM or SIGABRT. This should be used most of the time, since
+    # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
 
 
