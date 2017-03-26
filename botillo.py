@@ -14,6 +14,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+@restricted
 def start(bot, update):
     update.message.reply_text('eae')
 
@@ -25,11 +26,13 @@ def restart(bot, update):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
+@restricted
 def caps(bot, update, args):
     text_caps = ' '.join(args).upper()
     update.message.reply_text(text_caps)
 
 
+@restricted
 def question(bot, update):
     update.message.chat.send_action('typing')
     update.message.reply_text("perae")
